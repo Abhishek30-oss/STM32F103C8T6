@@ -1,0 +1,12 @@
+arm-none-eabi-gcc -c -mcpu=cortex-m3 -std=gnu11 -Wall -O0 -o main.o main.c
+arm-none-eabi-gcc -c -mcpu=cortex-m3 -std=gnu11 -Wall -O0 -o startup.o startup.c
+arm-none-eabi-gcc -nostdlib -T stmf103_ls.ld -o final.elf main.o startup.o  
+
+arm-none-eabi-gdb.exe
+
+openocd -f board/stm32f103c8_blue_pill.cfg
+st_nucleo_f4d
+openocd -f board/st_nucleo_f4.cfg
+openocd -f interface\stlink-v2.cfg -f board/stm32f103c8_blue_pill.cfg
+stm32f1x
+openocd -f target/stm32f1x.cfg
